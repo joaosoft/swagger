@@ -1,4 +1,8 @@
 gen:
+	@echo "=== creating folder ./spec ==="
+	mkdir -p ./spec
+
+	@echo "=== generating swagger ==="
 	swagger generate spec -o ./spec/swagger.json
 
 cli:
