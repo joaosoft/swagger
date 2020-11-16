@@ -1,3 +1,7 @@
+install:
+	brew tap go-swagger/go-swagger
+	brew install go-swagger
+
 gen:
 	@echo "=== creating folder ./spec ==="
 	#rm -rf ./spec/swagger.json -f

@@ -5,10 +5,13 @@ A swagger example using the swagger api [goswagger](https://goswagger.io).
 
 #How to use ?
 ```
-# download swagger client
+# to install go-swagger command
+make install
+
+# to download swagger client
 make cli
 
-# generate client 
+# to generate swagger 
 make gen
 ```
 
