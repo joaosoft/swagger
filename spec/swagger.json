@@ -1,0 +1,125 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec",
+    "title": "API.",
+    "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
+    "contact": {
+      "name": "John Doe",
+      "url": "http://john.doe.com",
+      "email": "john.doe@example.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    "version": "0.0.1"
+  },
+  "host": "localhost:8090",
+  "basePath": "/v1",
+  "paths": {
+    "/error": {
+      "get": {
+        "description": "This will return error.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "summary": "Get error.",
+        "operationId": "error",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "400": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "default": {
+            "$ref": "#/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/success": {
+      "get": {
+        "description": "This will return success.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "summary": "Get success.",
+        "operationId": "success",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/SuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "default": {
+            "$ref": "#/responses/SuccessResponse"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "ErrorResponse": {
+      "description": "A ErrorResponse is an error that is used when the required input fails validation.",
+      "headers": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "description": "An optional field code to which this validation applies"
+        },
+        "message": {
+          "type": "string",
+          "example": "Expected type string",
+          "description": "The validation message\n\nRequired: true"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "description": "A SuccessResponse is an error that is used when the required input fails validation.",
+      "headers": {
+        "success": {
+          "type": "boolean",
+          "description": "The validation message\n\nRequired: true"
+        }
+      }
+    }
+  },
+  "x-meta-array": [
+    "value1",
+    "value2"
+  ],
+  "x-meta-array-obj": [
+    {
+      "name": "obj",
+      "value": "field"
+    }
+  ],
+  "x-meta-value": "value"
+}
