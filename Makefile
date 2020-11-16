@@ -1,5 +1,6 @@
 gen:
 	@echo "=== creating folder ./spec ==="
+	rm -rf ./spec/swagger.json
 	mkdir -p ./spec
 
 	@echo "=== generating swagger ==="
@@ -7,6 +8,7 @@ gen:
 
 cli:
 	@echo "=== downloading ==="
+	find ./spec/* \! -name 'swagger.json' -delete
 	git clone https://github.com/swagger-api/swagger-ui /tmp/swagger-ui
 	mv /tmp/swagger-ui/dist/* ./spec/
 	rm -rf /tmp/swagger-ui
