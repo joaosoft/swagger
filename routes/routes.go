@@ -1,51 +1,21 @@
-// Package Example API.
-//
-// the purpose of this application is to provide an application
-// that is using plain go code to define an API
-//
-// This should demonstrate all the possible comment annotations
-// that are available to turn go code into a fully compliant swagger 2.0 spec
-//
-// Terms Of Service:
-//
-// there are no TOS at this moment, use at your own risk we take no responsibility
-//
-//     Schemes: http, https
-//     Host: localhost:8090
-//     BasePath: /v1
-//     Version: 0.0.1
-//     License: MIT http://opensource.org/licenses/MIT
-//     Contact: John Doe<john.doe@example.com> http://john.doe.com
-//
-//     Consumes:
-//     - application/json
-//
-//     Produces:
-//     - application/json
-//
-//     Extensions:
-//     x-meta-value: value
-//     x-meta-array:
-//       - value1
-//       - value2
-//     x-meta-array-obj:
-//       - name: obj
-//         value: field
-//
-// swagger:meta
 package routes
 
 import (
+	"github.com/gorilla/mux"
 	"net/http"
 	"swagger/controllers"
 )
 
+var (
+	Router = mux.NewRouter()
+)
+
 func init() {
-	// swagger:route GET /success success
+	// swagger:route GET /persons/{id_person} person-tag GetPersonByIDRequestParameter
 	//
-	// Get success.
+	// Get person by id.
 	//
-	// This will return success.
+	// This will return the person information.
 	//
 	//     Consumes:
 	//     - application/json
@@ -58,14 +28,36 @@ func init() {
 	//     Deprecated: false
 	//
 	//     Responses:
-	//       default: SuccessResponse
-	//       200: SuccessResponse
+	//       default: PersonResponse
+	//       200: PersonResponse
 	//       400: ErrorResponse
-	http.HandleFunc("/v1/success", controllers.HandleSuccess)
+	Router.HandleFunc("/v1/persons/{id_person}", controllers.GetPersonByID).Methods(http.MethodGet)
 
-	// swagger:route GET /error error
+	// swagger:route GET /persons/{id_person}/addresses/{id_address} address-tag GetPersonAddressByIDRequestParameter
 	//
-	// Get error.
+	// Get the person address.
+	//
+	// This will return error.
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http, https
+	//
+	//     Deprecated: false
+	//
+	//     Responses:
+	//       default: AddressResponse
+	//       200: AddressResponse
+	//       400: ErrorResponse
+	Router.HandleFunc("/v1/persons/{id}/addresses/{id_address}", controllers.GetPersonAddressByID).Methods(http.MethodGet)
+
+	// swagger:route GET / not-found-tag
+	//
+	// Not Found
 	//
 	// This will return error.
 	//
@@ -81,10 +73,9 @@ func init() {
 	//
 	//     Responses:
 	//       default: ErrorResponse
-	//       200: ErrorResponse
-	//       400: ErrorResponse
-	http.HandleFunc("/v1/error", controllers.HandleError)
+	//       404: ErrorResponse
+	Router.HandleFunc("/v1/", controllers.NotFound)
 
 	fs := http.FileServer(http.Dir("./spec"))
-	http.Handle("/swaggerui/", http.StripPrefix("/swaggerui/", fs))
+	Router.PathPrefix("/swaggerui/").Handler(http.StripPrefix("/swaggerui/", fs))
 }

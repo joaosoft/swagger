@@ -25,10 +25,10 @@
     },
     "version": "0.0.1"
   },
-  "host": "localhost:8090",
+  "host": "localhost:8081",
   "basePath": "/v1",
   "paths": {
-    "/error": {
+    "/": {
       "get": {
         "description": "This will return error.",
         "consumes": [
@@ -41,13 +41,10 @@
           "http",
           "https"
         ],
-        "summary": "Get error.",
-        "operationId": "error",
+        "summary": "Not Found",
+        "operationId": "not-found-tag",
         "responses": {
-          "200": {
-            "$ref": "#/responses/ErrorResponse"
-          },
-          "400": {
+          "404": {
             "$ref": "#/responses/ErrorResponse"
           },
           "default": {
@@ -56,9 +53,9 @@
         }
       }
     },
-    "/success": {
+    "/persons/{id_person}": {
       "get": {
-        "description": "This will return success.",
+        "description": "This will return the person information.",
         "consumes": [
           "application/json"
         ],
@@ -69,23 +66,115 @@
           "http",
           "https"
         ],
-        "summary": "Get success.",
-        "operationId": "success",
+        "tags": [
+          "person-tag"
+        ],
+        "summary": "Get person by id.",
+        "operationId": "GetPersonByIDRequestParameter",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "IdPerson",
+            "name": "id_person",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Age",
+            "description": "age",
+            "name": "age",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
-            "$ref": "#/responses/SuccessResponse"
+            "$ref": "#/responses/PersonResponse"
           },
           "400": {
             "$ref": "#/responses/ErrorResponse"
           },
           "default": {
-            "$ref": "#/responses/SuccessResponse"
+            "$ref": "#/responses/PersonResponse"
+          }
+        }
+      }
+    },
+    "/persons/{id_person}/addresses/{id_address}": {
+      "get": {
+        "description": "This will return error.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "address-tag"
+        ],
+        "summary": "Get the person address.",
+        "operationId": "GetPersonAddressByIDRequestParameter",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "IdPerson",
+            "name": "id_person",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "IdAddress",
+            "name": "id_address",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/AddressResponse"
+          },
+          "400": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "default": {
+            "$ref": "#/responses/AddressResponse"
           }
         }
       }
     }
   },
   "responses": {
+    "AddressResponse": {
+      "description": "A AddressResponse is an struct that contains the address information.",
+      "headers": {
+        "city": {
+          "type": "string",
+          "description": "Required: true"
+        },
+        "country": {
+          "type": "string",
+          "description": "The validation message\n\nRequired: true"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Required: true"
+        },
+        "street": {
+          "type": "string",
+          "description": "Required: true"
+        }
+      }
+    },
     "ErrorResponse": {
       "description": "A ErrorResponse is an error that is used when the required input fails validation.",
       "headers": {
@@ -101,12 +190,21 @@
         }
       }
     },
-    "SuccessResponse": {
-      "description": "A SuccessResponse is an error that is used when the required input fails validation.",
+    "PersonResponse": {
+      "description": "A PersonResponse is an struct that contains the person information.",
       "headers": {
-        "success": {
-          "type": "boolean",
+        "age": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Required: true"
+        },
+        "id": {
+          "type": "string",
           "description": "The validation message\n\nRequired: true"
+        },
+        "name": {
+          "type": "string",
+          "description": "Required: true"
         }
       }
     }
