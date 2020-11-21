@@ -28,27 +28,41 @@
   "host": "localhost:8081",
   "basePath": "/v1",
   "paths": {
-    "/": {
+    "/errors": {
       "get": {
-        "description": "This will return error.",
-        "consumes": [
-          "application/json"
-        ],
+        "description": "Could be any pet",
         "produces": [
           "application/json"
         ],
-        "schemes": [
-          "http",
-          "https"
+        "summary": "Returns the error definition",
+        "operationId": "getErrors",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "the error id",
+            "name": "id_error",
+            "in": "query",
+            "required": true
+          }
         ],
-        "summary": "Not Found",
-        "operationId": "not-found-tag",
         "responses": {
-          "404": {
-            "$ref": "#/responses/ErrorResponse"
+          "200": {
+            "description": "the error definition",
+            "schema": {
+              "type": "object",
+              "$ref": "#/responses/ErrorResponse"
+            }
+          },
+          "204": {
+            "description": "no content"
           },
           "default": {
-            "$ref": "#/responses/ErrorResponse"
+            "description": "the error definition",
+            "schema": {
+              "type": "object",
+              "$ref": "#/responses/ErrorResponse"
+            }
           }
         }
       }

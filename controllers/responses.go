@@ -39,7 +39,6 @@ type ErrorResponse struct {
 	// An optional field code to which this validation applies
 	Code int `json:"code"`
 	// The validation message
-	//
 	// Required: true
 	// Example: Expected type string
 	Message string `json:"message"`
