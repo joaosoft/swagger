@@ -6,7 +6,7 @@ FROM nginx:1.19-alpine
 
 RUN apk --no-cache add nodejs
 
-LABEL maintainer="fehguy"
+LABEL maintainer="João Ribeiro"
 
 ENV API_KEY "**None**"
 ENV SWAGGER_JSON "/app/swagger.json"
