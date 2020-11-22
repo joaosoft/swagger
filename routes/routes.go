@@ -60,7 +60,7 @@ func init() {
 	//
 	// Returns the error definition
 	//
-	// Could be any pet
+	// Could be any error
 	//
 	// ---
 	// produces:
@@ -76,14 +76,12 @@ func init() {
 	//   '200':
 	//     description: the error definition
 	//     schema:
-	//       type: object
 	//       "$ref": "#/responses/ErrorResponse"
 	//   '204':
 	//     description: no content
 	//   default:
 	//     description: the error definition
 	//     schema:
-	//       type: object
 	//       "$ref": "#/responses/ErrorResponse"
 	Router.HandleFunc("/v1/errors", controllers.GetErrorByID)
 

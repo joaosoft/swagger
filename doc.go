@@ -6,16 +6,14 @@
 // This should demonstrate all the possible comment annotations
 // that are available to turn go code into a fully compliant swagger 2.0 spec
 //
-// Terms Of Service:
-//
-// there are no TOS at this moment, use at your own risk we take no responsibility
+// TermsOfService:
 //
 //     Schemes: http, https
 //     Host: localhost:8081
 //     BasePath: /v1
 //     Version: 0.0.1
 //     License: MIT http://opensource.org/licenses/MIT
-//     Contact: John Doe<john.doe@example.com> http://john.doe.com
+//     Contact: João Ribeiro<joaosoft@gmail.com> https://github.com/joaosoft
 //
 //     Consumes:
 //     - application/json
@@ -31,6 +29,15 @@
 //     x-meta-array-obj:
 //       - name: obj
 //         value: field
+//
+//     Security:
+//     - bearer:
+//
+//     SecurityDefinitions:
+//     bearer:
+//          type: apiKey
+//          name: Authorization
+//          in: header
 //
 // swagger:meta
 package main

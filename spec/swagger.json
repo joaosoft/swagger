@@ -13,11 +13,10 @@
   "info": {
     "description": "the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec",
     "title": "API.",
-    "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
     "contact": {
-      "name": "John Doe",
-      "url": "http://john.doe.com",
-      "email": "john.doe@example.com"
+      "name": "João Ribeiro",
+      "url": "https://github.com/joaosoft",
+      "email": "joaosoft@gmail.com"
     },
     "license": {
       "name": "MIT",
@@ -30,7 +29,7 @@
   "paths": {
     "/errors": {
       "get": {
-        "description": "Could be any pet",
+        "description": "Could be any error",
         "produces": [
           "application/json"
         ],
@@ -50,7 +49,6 @@
           "200": {
             "description": "the error definition",
             "schema": {
-              "type": "object",
               "$ref": "#/responses/ErrorResponse"
             }
           },
@@ -60,7 +58,6 @@
           "default": {
             "description": "the error definition",
             "schema": {
-              "type": "object",
               "$ref": "#/responses/ErrorResponse"
             }
           }
@@ -199,8 +196,7 @@
         },
         "message": {
           "type": "string",
-          "example": "Expected type string",
-          "description": "The validation message\n\nRequired: true"
+          "description": "The validation message\nRequired: true"
         }
       }
     },
@@ -223,6 +219,18 @@
       }
     }
   },
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
   "x-meta-array": [
     "value1",
     "value2"

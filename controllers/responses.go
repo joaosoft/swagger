@@ -40,6 +40,5 @@ type ErrorResponse struct {
 	Code int `json:"code"`
 	// The validation message
 	// Required: true
-	// Example: Expected type string
 	Message string `json:"message"`
 }
