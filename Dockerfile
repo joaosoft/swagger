@@ -1,26 +1,32 @@
-# go-swagger
-#
-# docker run --rm -v $(pwd):/go/src supinf/go-swagger validate ./swagger.yml
-# docker run --rm -v $GOPATH/src:/go/src -w /go/src/github.com/your-account/project supinf/go-swagger generate server -A sample -f ./swagger.yml
-# docker run --rm -v $GOPATH/src:/go/src -w /go/src/github.com/your-account/project supinf/go-swagger generate client -A sample -f ./swagger.yml
+# Looking for information on environment variables?
+# We don't declare them here — take a look at our docs.
+# https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md
 
-FROM golang:1.15.2-alpine3.12 AS build
-RUN apk --no-cache add bash g++ openssl git
-RUN go get -u github.com/mitchellh/gox
+FROM nginx:1.19-alpine
 
-ENV SWAGGER_VERSION=v0.25.0
+RUN apk --no-cache add nodejs
 
-ENV REPO="github.com/go-swagger/go-swagger/cmd/swagger"
-RUN go get -u "${REPO}"
-WORKDIR /go/src/github.com/go-swagger/go-swagger
-RUN git checkout "${SWAGGER_VERSION}"
-RUN gox --osarch "linux/amd64" -output /swagger \
-      -ldflags "-s -w -X ${REPO}/commands.Version=${SWAGGER_VERSION} -X ${REPO}/commands.Commit=$(git rev-parse --short HEAD)" \
-      "${REPO}"
+LABEL maintainer="fehguy"
 
-FROM alpine:3.12
-COPY --from=build /swagger /usr/bin/swagger
-ENV GOPATH=/go
-WORKDIR /go/src
-ENTRYPOINT ["swagger"]
-CMD ["-h"]
+ENV API_KEY "**None**"
+ENV SWAGGER_JSON "/app/swagger.json"
+ENV PORT 8080
+ENV BASE_URL ""
+ENV SWAGGER_JSON_URL ""
+
+COPY ./docker/nginx.conf ./docker/cors.conf /etc/nginx/
+
+# copy swagger files to the `/js` folder
+COPY ./dist/* /usr/share/nginx/html/
+COPY ./docker/run.sh /usr/share/nginx/
+COPY ./docker/configurator /usr/share/nginx/configurator
+
+RUN chmod +x /usr/share/nginx/run.sh && \
+    chmod -R a+rw /usr/share/nginx && \
+    chmod -R a+rw /etc/nginx && \
+    chmod -R a+rw /var && \
+    chmod -R a+rw /var/run
+
+EXPOSE 8080
+
+CMD ["sh", "/usr/share/nginx/run.sh"]
