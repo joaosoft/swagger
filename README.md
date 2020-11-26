@@ -1,8 +1,7 @@
 # swagger
 [![Build Status](https://travis-ci.org/joaosoft/swagger.svg?branch=master)](https://travis-ci.org/joaosoft/swagger) | [![codecov](https://codecov.io/gh/joaosoft/swagger/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/swagger) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/swagger)](https://goreportcard.com/report/github.com/joaosoft/swagger) | [![GoDoc](https://godoc.org/github.com/joaosoft/swagger?status.svg)](https://godoc.org/github.com/joaosoft/swagger)
 
-A swagger example using the swagger api [goswagger](https://goswagger.io).
-The swagger specification is generated using two possible frameworks
+Swagger specification generated using two tools:
 * [go-swagger](https://github.com/go-swagger/go-swagger)
 * [go-swag](https://github.com/swaggo/swag)
 
