@@ -3,42 +3,40 @@ package controllers
 // A PersonResponse is an struct that contains the person information.
 // swagger:response PersonResponse
 type PersonResponse struct {
-	// The validation message
-	//
-	// Required: true
+	// Id
 	Id string `json:"id"`
 
-	// Required: true
+	// Name
 	Name string `json:"name"`
 
-	// Required: true
+	// Age
 	Age int `json:"age"`
 }
 
 // A AddressResponse is an struct that contains the address information.
 // swagger:response AddressResponse
 type AddressResponse struct {
-	// The validation message
-	//
-	// Required: true
+	// Id
+	Id string `json:"id"`
+
+	// Country
 	Country string `json:"country"`
 
-	// Required: true
+	// City
 	City string `json:"city"`
 
-	// Required: true
+	// Street
 	Street string `json:"street"`
 
-	// Required: true
+	// Number
 	Number int `json:"number"`
 }
 
 // A ErrorResponse is an error that is used when the required input fails validation.
 // swagger:response ErrorResponse
 type ErrorResponse struct {
-	// An optional field code to which this validation applies
+	// Code
 	Code int `json:"code"`
-	// The validation message
-	// Required: true
+	// Message
 	Message string `json:"message"`
 }

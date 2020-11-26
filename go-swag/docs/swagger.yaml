@@ -2,12 +2,8 @@ definitions:
   controllers.ErrorResponse:
     properties:
       code:
-        description: An optional field code to which this validation applies
         type: integer
       message:
-        description: |-
-          The validation message
-          Required: true
         type: string
     type: object
 info:
@@ -48,6 +44,10 @@ paths:
         in: path
         name: id_person
         required: true
+        type: string
+      - description: Age
+        in: query
+        name: age
         type: integer
       produces:
       - application/json
@@ -72,12 +72,12 @@ paths:
         in: path
         name: id_person
         required: true
-        type: integer
-      - description: Person ID
+        type: string
+      - description: Address ID
         in: path
         name: id_address
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:

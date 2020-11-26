@@ -1,22 +1,23 @@
 package controllers
 
 // swagger:parameters GetPersonByIDRequestParameter
-type GetPersonByIDRequestParameter struct {
+type GetPersonByIDRequest struct {
 	// in:path
 	// id person
-	IdPerson int `json:"id_person"`
+	IdPerson string `json:"id_person"`
 
+	// in:query
 	// age
 	Age int `json:"age"`
 }
 
 // swagger:parameters GetPersonAddressByIDRequestParameter
-type GetPersonAddressByIDRequestParameter struct {
+type GetPersonAddressByIDRequest struct {
 	// in:path
 	// id person
-	IdPerson int `json:"id_person"`
+	IdPerson string `json:"id_person"`
 
 	// in:path
 	// id address
-	IdAddress int `json:"id_address"`
+	IdAddress string `json:"id_address"`
 }

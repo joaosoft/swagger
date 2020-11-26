@@ -8,27 +8,35 @@ import (
 	"strconv"
 )
 
-// GetPersonByIDRequestParameter example
+// GetPersonByIDRequest example
 // @Summary Get person by id.
 // @Description Get person by id.
 // @ID get-person-by-id
 // @Accept  json
 // @Produce  json
-// @Param   id_person      path   int     true  "Person ID"
+// @Param   id_person      path   string     true  "Person ID"
+// @Param   age      query   int     false  "Age"
 // @Success 200 {string} PersonResponse	"ok"
 // @Failure 400 {object} ErrorResponse "error"
 // @Router /persons/{id_person} [get]
 func GetPersonByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 
-	fmt.Printf("> executing get person for id_person: %s", vars["id_person"])
-
 	age, _ := strconv.Atoi(req.URL.Query().Get("age"))
+	request := GetPersonByIDRequest{
+		IdPerson: vars["id_person"],
+		Age:      age,
+	}
+
+	fmt.Printf("> executing get person for id_person: %s", request.IdPerson)
+
+	// ...
+
 	bytes, _ := json.Marshal(
 		PersonResponse{
-			Id:   vars["id_person"],
+			Id:   request.IdPerson,
 			Name: "João Ribeiro",
-			Age:  age,
+			Age:  request.Age,
 		},
 	)
 

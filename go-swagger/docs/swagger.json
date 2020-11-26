@@ -84,8 +84,7 @@
         "operationId": "GetPersonByIDRequestParameter",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-go-name": "IdPerson",
             "name": "id_person",
             "in": "path",
@@ -95,7 +94,6 @@
             "type": "integer",
             "format": "int64",
             "x-go-name": "Age",
-            "description": "age",
             "name": "age",
             "in": "query"
           }
@@ -133,16 +131,14 @@
         "operationId": "GetPersonAddressByIDRequestParameter",
         "parameters": [
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-go-name": "IdPerson",
             "name": "id_person",
             "in": "path",
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "x-go-name": "IdAddress",
             "name": "id_address",
             "in": "path",
@@ -169,20 +165,24 @@
       "headers": {
         "city": {
           "type": "string",
-          "description": "Required: true"
+          "description": "City"
         },
         "country": {
           "type": "string",
-          "description": "The validation message\n\nRequired: true"
+          "description": "Country"
+        },
+        "id": {
+          "type": "string",
+          "description": "Id"
         },
         "number": {
           "type": "integer",
           "format": "int64",
-          "description": "Required: true"
+          "description": "Number"
         },
         "street": {
           "type": "string",
-          "description": "Required: true"
+          "description": "Street"
         }
       }
     },
@@ -192,11 +192,11 @@
         "code": {
           "type": "integer",
           "format": "int64",
-          "description": "An optional field code to which this validation applies"
+          "description": "Code"
         },
         "message": {
           "type": "string",
-          "description": "The validation message\nRequired: true"
+          "description": "Message"
         }
       }
     },
@@ -206,15 +206,15 @@
         "age": {
           "type": "integer",
           "format": "int64",
-          "description": "Required: true"
+          "description": "Age"
         },
         "id": {
           "type": "string",
-          "description": "The validation message\n\nRequired: true"
+          "description": "Id"
         },
         "name": {
           "type": "string",
-          "description": "Required: true"
+          "description": "Name"
         }
       }
     }

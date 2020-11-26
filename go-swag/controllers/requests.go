@@ -1,22 +1,13 @@
 package controllers
 
-// GetPersonByIDRequestParameter
-type GetPersonByIDRequestParameter struct {
-	// in:path
-	// id person
-	IdPerson int `json:"id_person"`
-
-	// age
-	Age int `json:"age"`
+// GetPersonByIDRequest
+type GetPersonByIDRequest struct {
+	IdPerson string `json:"id_person"`
+	Age      int    `json:"age"`
 }
 
-// GetPersonAddressByIDRequestParameter
-type GetPersonAddressByIDRequestParameter struct {
-	// in:path
-	// id person
-	IdPerson int `json:"id_person"`
-
-	// in:path
-	// id address
-	IdAddress int `json:"id_address"`
+// GetPersonAddressByIDRequest
+type GetPersonAddressByIDRequest struct {
+	IdPerson  string `json:"id_person"`
+	IdAddress string `json:"id_address"`
 }

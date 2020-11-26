@@ -73,11 +73,17 @@ var doc = `{
                 "operationId": "get-person-by-id",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Person ID",
                         "name": "id_person",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Age",
+                        "name": "age",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -109,15 +115,15 @@ var doc = `{
                 "operationId": "get-person-address-by-id",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Person ID",
                         "name": "id_person",
                         "in": "path",
                         "required": true
                     },
                     {
-                        "type": "integer",
-                        "description": "Person ID",
+                        "type": "string",
+                        "description": "Address ID",
                         "name": "id_address",
                         "in": "path",
                         "required": true
@@ -145,11 +151,9 @@ var doc = `{
             "type": "object",
             "properties": {
                 "code": {
-                    "description": "An optional field code to which this validation applies",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "The validation message\nRequired: true",
                     "type": "string"
                 }
             }

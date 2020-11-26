@@ -31,14 +31,21 @@ import (
 func GetPersonByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 
-	fmt.Printf("> executing get person for id_person: %s", vars["id_person"])
-
 	age, _ := strconv.Atoi(req.URL.Query().Get("age"))
+	request := GetPersonByIDRequest{
+		IdPerson: vars["id_person"],
+		Age:      age,
+	}
+
+	fmt.Printf("> executing get person for id_person: %s", request.IdPerson)
+
+	// ...
+
 	bytes, _ := json.Marshal(
 		PersonResponse{
-			Id:   vars["id_person"],
+			Id:   request.IdPerson,
 			Name: "João Ribeiro",
-			Age:  age,
+			Age:  request.Age,
 		},
 	)
 
