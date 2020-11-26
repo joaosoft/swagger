@@ -6,7 +6,7 @@ The swagger specification is generated using two possible frameworks
 * [go-swagger](https://github.com/go-swagger/go-swagger)
 * [go-swag](https://github.com/swaggo/swag)
 
-#How to use ?
+# How to use ?
 ```
 # to install go-swagger command
 make install
