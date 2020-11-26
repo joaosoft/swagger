@@ -9,23 +9,24 @@ install:
 gen-go-swagger:
 	@echo "=== creating folder ./spec ==="
 	#rm -rf ./spec/swagger.json -f
-	mkdir -p ./spec
 
 	@echo "=== generating swagger ==="
-	swagger generate spec -o ./spec/swagger.json
+	pushd "./go-swagger" && mkdir -p ./docs && swagger generate spec -o ./docs/swagger.json && popd
 
 gen-go-swag:
 	@echo "=== creating folder ./spec ==="
 	#rm -rf ./spec/swagger.json -f
-	mkdir -p ./spec
 
 	@echo "=== generating swagger ==="
-	swag spec -o ./spec/swagger.json
+	pushd "./go-swag" && mkdir -p ./docs && swag init && popd
 
 cli:
 	@echo "=== downloading ==="
+	rm -rf ./spec
 	#find ./spec/* \! -name 'swagger.json' -delete
 	git clone https://github.com/swagger-api/swagger-ui /tmp/swagger-ui
+
+	mkdir -p ./spec
 	mv /tmp/swagger-ui/dist/* ./spec/
 	rm -rf /tmp/swagger-ui
 

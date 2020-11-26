@@ -1,0 +1,93 @@
+definitions:
+  controllers.ErrorResponse:
+    properties:
+      code:
+        description: An optional field code to which this validation applies
+        type: integer
+      message:
+        description: |-
+          The validation message
+          Required: true
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /errors:
+    get:
+      consumes:
+      - application/json
+      description: Returns the error definition
+      operationId: get-error-by-id
+      parameters:
+      - description: Error ID
+        in: query
+        name: id_error
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "204":
+          description: ok
+          schema:
+            type: string
+      summary: Returns the error definition
+  /persons/{id_person}:
+    get:
+      consumes:
+      - application/json
+      description: Get person by id.
+      operationId: get-person-by-id
+      parameters:
+      - description: Person ID
+        in: path
+        name: id_person
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Get person by id.
+  /persons/{id_person}/addresses/{id_address}:
+    get:
+      consumes:
+      - application/json
+      description: Get the person address.
+      operationId: get-person-address-by-id
+      parameters:
+      - description: Person ID
+        in: path
+        name: id_person
+        required: true
+        type: integer
+      - description: Person ID
+        in: path
+        name: id_address
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Get the person address.
+swagger: "2.0"

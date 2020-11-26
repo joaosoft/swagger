@@ -7,6 +7,17 @@ import (
 	"net/http"
 )
 
+// GetPersonAddressByIDRequestParameter example
+// @Summary Get the person address.
+// @Description Get the person address.
+// @ID get-person-address-by-id
+// @Accept  json
+// @Produce  json
+// @Param   id_person      path   int     true  "Person ID"
+// @Param   id_address      path   int     true  "Person ID"
+// @Success 200 {string} AddressResponse	"ok"
+// @Failure 400 {object} ErrorResponse "error"
+// @Router /persons/{id_person}/addresses/{id_address} [get]
 func GetPersonAddressByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 

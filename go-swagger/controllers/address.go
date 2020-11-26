@@ -7,6 +7,26 @@ import (
 	"net/http"
 )
 
+// swagger:route GET /persons/{id_person}/addresses/{id_address} address-tag GetPersonAddressByIDRequestParameter
+//
+// Get the person address.
+//
+// This will return error.
+//
+//     Consumes:
+//     - application/json
+//
+//     Produces:
+//     - application/json
+//
+//     Schemes: http, https
+//
+//     Deprecated: false
+//
+//     Responses:
+//       default: AddressResponse
+//       200: AddressResponse
+//       400: ErrorResponse
 func GetPersonAddressByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 

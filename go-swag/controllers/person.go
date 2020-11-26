@@ -8,6 +8,16 @@ import (
 	"strconv"
 )
 
+// GetPersonByIDRequestParameter example
+// @Summary Get person by id.
+// @Description Get person by id.
+// @ID get-person-by-id
+// @Accept  json
+// @Produce  json
+// @Param   id_person      path   int     true  "Person ID"
+// @Success 200 {string} PersonResponse	"ok"
+// @Failure 400 {object} ErrorResponse "error"
+// @Router /persons/{id_person} [get]
 func GetPersonByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 

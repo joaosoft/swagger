@@ -8,6 +8,26 @@ import (
 	"strconv"
 )
 
+// swagger:route GET /persons/{id_person} person-tag GetPersonByIDRequestParameter
+//
+// Get person by id.
+//
+// This will return the person information.
+//
+//     Consumes:
+//     - application/json
+//
+//     Produces:
+//     - application/json
+//
+//     Schemes: http, https
+//
+//     Deprecated: false
+//
+//     Responses:
+//       default: PersonResponse
+//       200: PersonResponse
+//       400: ErrorResponse
 func GetPersonByID(w http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 
