@@ -1,14 +1,26 @@
 install:
+	@echo "=== installing go-swagger ==="
 	brew tap go-swagger/go-swagger
 	brew install go-swagger
 
-gen:
+	@echo "=== installing go-swag ==="
+	go get -u github.com/swaggo/swag/cmd/swag
+
+gen-go-swagger:
 	@echo "=== creating folder ./spec ==="
 	#rm -rf ./spec/swagger.json -f
 	mkdir -p ./spec
 
 	@echo "=== generating swagger ==="
 	swagger generate spec -o ./spec/swagger.json
+
+gen-go-swag:
+	@echo "=== creating folder ./spec ==="
+	#rm -rf ./spec/swagger.json -f
+	mkdir -p ./spec
+
+	@echo "=== generating swagger ==="
+	swag spec -o ./spec/swagger.json
 
 cli:
 	@echo "=== downloading ==="

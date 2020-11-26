@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/gorilla/mux"
 	"net/http"
-	"swagger/controllers"
+	"swagger/go-swagger/controllers"
 )
 
 var (

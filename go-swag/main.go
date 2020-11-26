@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"swagger/routes"
-	_ "swagger/routes"
+	"swagger/go-swagger/routes"
+	_ "swagger/go-swagger/routes"
 )
 
 func main() {
