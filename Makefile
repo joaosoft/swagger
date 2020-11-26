@@ -4,6 +4,7 @@ install:
 	brew install go-swagger
 
 	@echo "=== installing go-swag ==="
+	# if any error occurs, download the binary from releases at https://github.com/swaggo/swag/releases
 	go get -u github.com/swaggo/swag/cmd/swag
 
 gen-go-swagger:
