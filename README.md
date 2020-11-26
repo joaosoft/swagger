@@ -3,8 +3,8 @@
 
 A swagger example using the swagger api [goswagger](https://goswagger.io).
 The swagger specification is generated using two possible frameworks
-- [go-swagger](https://github.com/go-swagger/go-swagger)
-- [go-swag](https://github.com/swaggo/swag)
+* [go-swagger](https://github.com/go-swagger/go-swagger)
+* [go-swag](https://github.com/swaggo/swag)
 
 #How to use ?
 ```
