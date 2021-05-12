@@ -1,9 +1,8 @@
 package controllers
 
 import (
-	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo"
 	"net/http"
 	"strconv"
 )
@@ -19,28 +18,20 @@ import (
 // @Success 200 {string} PersonResponse	"ok"
 // @Failure 400 {object} ErrorResponse "error"
 // @Router /persons/{id_person} [get]
-func GetPersonByID(w http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
-
-	age, _ := strconv.Atoi(req.URL.Query().Get("age"))
+func GetPersonByID(ctx echo.Context) error {
+	age, _ := strconv.Atoi(ctx.QueryParam("age"))
 	request := GetPersonByIDRequest{
-		IdPerson: vars["id_person"],
+		IdPerson: ctx.Param(":id_person"),
 		Age:      age,
 	}
 
 	fmt.Printf("> executing get person for id_person: %s", request.IdPerson)
 
-	// ...
+	response := PersonResponse{
+		Id:   request.IdPerson,
+		Name: "João Ribeiro",
+		Age:  request.Age,
+	}
 
-	bytes, _ := json.Marshal(
-		PersonResponse{
-			Id:   request.IdPerson,
-			Name: "João Ribeiro",
-			Age:  request.Age,
-		},
-	)
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(bytes)
+	return ctx.JSON(http.StatusOK, response)
 }

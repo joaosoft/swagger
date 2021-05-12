@@ -1,21 +1,21 @@
 package routes
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
+	"github.com/labstack/echo"
 	"swagger/go-swag/controllers"
 )
 
 var (
-	Router = mux.NewRouter()
+	Router = echo.New()
 )
 
 func init() {
 
-	Router.HandleFunc("/v1/persons/{id_person}", controllers.GetPersonByID).Methods(http.MethodGet)
-	Router.HandleFunc("/v1/persons/{id}/addresses/{id_address}", controllers.GetPersonAddressByID).Methods(http.MethodGet)
-	Router.HandleFunc("/v1/errors", controllers.GetErrorByID)
+	Router.GET("/v1/persons/:id_person", controllers.GetPersonByID)
+	Router.GET("/v1/persons/:id_person/addresses/:id_address", controllers.GetPersonAddressByID)
+	Router.GET("/v1/errors", controllers.GetErrorByID)
 
-	fs := http.FileServer(http.Dir("./spec"))
-	Router.PathPrefix("/swaggerui/").Handler(http.StripPrefix("/swaggerui/", fs))
+	Router.Static("swaggerui", "./spec")
+
+	Router.Logger.Fatal(Router.Start(":8081"))
 }

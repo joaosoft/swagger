@@ -1,9 +1,8 @@
 package controllers
 
 import (
-	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo"
 	"net/http"
 )
 
@@ -18,27 +17,21 @@ import (
 // @Success 200 {string} AddressResponse	"ok"
 // @Failure 400 {object} ErrorResponse "error"
 // @Router /persons/{id_person}/addresses/{id_address} [get]
-func GetPersonAddressByID(w http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
-
+func GetPersonAddressByID(ctx echo.Context) error {
 	request := GetPersonAddressByIDRequest{
-		IdPerson:  vars["id_person"],
-		IdAddress: vars["id_address"],
+		IdPerson:  ctx.Param(":id_person"),
+		IdAddress: ctx.Param(":id_address"),
 	}
 
 	fmt.Printf("> executing get address for id_person: %s, id_address: %s", request.IdPerson, request.IdAddress)
 
-	bytes, _ := json.Marshal(
-		AddressResponse{
+	response :=	AddressResponse{
 			Id:      request.IdAddress,
 			Country: "Portugal",
 			City:    "Porto",
 			Street:  "Rua da calçada",
 			Number:  7,
-		},
-	)
+		}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(bytes)
+	return ctx.JSON(http.StatusOK, response)
 }

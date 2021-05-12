@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"encoding/json"
 	"fmt"
+	"github.com/labstack/echo"
 	"net/http"
 	"strconv"
 )
@@ -17,24 +17,19 @@ import (
 // @Success 200 {object} ErrorResponse "ok"
 // @Success 204 {string} string	"ok"
 // @Router /errors [get]
-func GetErrorByID(w http.ResponseWriter, req *http.Request) {
-	errorID, _ := strconv.Atoi(req.URL.Query().Get("id_error"))
+func GetErrorByID(ctx echo.Context) error {
+	errorID, _ := strconv.Atoi(ctx.QueryParam("id_error"))
 	fmt.Printf("> executing get errors for id: %d", errorID)
 
 	statusText := http.StatusText(errorID)
 
 	if statusText != "" {
-		bytes, _ := json.Marshal(
-			ErrorResponse{
+		response := ErrorResponse{
 				Code:    errorID,
 				Message: statusText,
-			},
-		)
-		w.Write(bytes)
-		w.WriteHeader(http.StatusOK)
+			}
+		return ctx.JSON(http.StatusOK, response)
 	} else {
-		w.WriteHeader(http.StatusNoContent)
+		return ctx.NoContent(http.StatusNoContent)
 	}
-
-	w.Header().Set("Content-Type", "application/json")
 }
