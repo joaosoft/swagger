@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/joaosoft/swagger/go-swagger/routes"
+	_ "github.com/joaosoft/swagger/go-swagger/routes"
 	"net/http"
-	"swagger/go-swagger/routes"
-	_ "swagger/go-swagger/routes"
 )
 
 func main() {

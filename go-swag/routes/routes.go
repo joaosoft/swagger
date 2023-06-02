@@ -1,8 +1,8 @@
 package routes
 
 import (
+	"github.com/joaosoft/swagger/go-swag/controllers"
 	"github.com/labstack/echo"
-	"swagger/go-swag/controllers"
 )
 
 var (

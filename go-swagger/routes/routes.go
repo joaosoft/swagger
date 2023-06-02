@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/joaosoft/swagger/go-swagger/controllers"
 	"net/http"
-	"swagger/go-swagger/controllers"
 )
 
 var (
